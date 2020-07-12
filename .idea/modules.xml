@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/gateway/boot-camp-gateway.iml" filepath="$PROJECT_DIR$/gateway/boot-camp-gateway.iml" />
+      <module fileurl="file://$PROJECT_DIR$/evaluate/evaluate.iml" filepath="$PROJECT_DIR$/evaluate/evaluate.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/mybtrade.iml" filepath="$PROJECT_DIR$/.idea/mybtrade.iml" />
+      <module fileurl="file://$PROJECT_DIR$/purchase/purchase.iml" filepath="$PROJECT_DIR$/purchase/purchase.iml" />
+      <module fileurl="file://$PROJECT_DIR$/sale/sale.iml" filepath="$PROJECT_DIR$/sale/sale.iml" />
+      <module fileurl="file://$PROJECT_DIR$/trade/trade.iml" filepath="$PROJECT_DIR$/trade/trade.iml" />
+      <module fileurl="file://$PROJECT_DIR$/tradecondition/tradecondition.iml" filepath="$PROJECT_DIR$/tradecondition/tradecondition.iml" />
+    </modules>
+  </component>
+</project>

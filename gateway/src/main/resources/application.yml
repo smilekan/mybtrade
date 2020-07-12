@@ -1,0 +1,82 @@
+server:
+  port: 8088
+
+---
+
+spring:
+  profiles: default
+  cloud:
+    gateway:
+      routes:
+        - id: tradecondition
+          uri: http://localhost:8081
+          predicates:
+            - Path= /tradeConditions/**
+        - id: sale
+          uri: http://localhost:8082
+          predicates:
+            - Path=/sales/**/sales/** 
+        - id: purchase
+          uri: http://localhost:8083
+          predicates:
+            - Path=/purchases/**/purchases/** 
+        - id: trade
+          uri: http://localhost:8084
+          predicates:
+            - Path=/tradings/**/tradings/** 
+        - id: evaluate
+          uri: http://localhost:8085
+          predicates:
+            - Path=/evaluations/**/evaluations/** 
+      globalcors:
+        corsConfigurations:
+          '[/**]':
+            allowedOrigins:
+              - "*"
+            allowedMethods:
+              - "*"
+            allowedHeaders:
+              - "*"
+            allowCredentials: true
+
+
+---
+
+spring:
+  profiles: docker
+  cloud:
+    gateway:
+      routes:
+        - id: tradecondition
+          uri: http://tradecondition:8080
+          predicates:
+            - Path= /tradeConditions/**
+        - id: sale
+          uri: http://sale:8080
+          predicates:
+            - Path=/sales/**/sales/** 
+        - id: purchase
+          uri: http://purchase:8080
+          predicates:
+            - Path=/purchases/**/purchases/** 
+        - id: trade
+          uri: http://trade:8080
+          predicates:
+            - Path=/tradings/**/tradings/** 
+        - id: evaluate
+          uri: http://evaluate:8080
+          predicates:
+            - Path=/evaluations/**/evaluations/** 
+      globalcors:
+        corsConfigurations:
+          '[/**]':
+            allowedOrigins:
+              - "*"
+            allowedMethods:
+              - "*"
+            allowedHeaders:
+              - "*"
+            allowCredentials: true
+
+server:
+  port: 8080

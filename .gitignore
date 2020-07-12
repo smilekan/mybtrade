@@ -1,0 +1,3 @@
+# Project exclude paths
+/sale/target/
+/trade/target/
