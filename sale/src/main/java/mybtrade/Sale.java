@@ -1,6 +1,8 @@
 package mybtrade;
 
 import javax.persistence.*;
+
+import mybtrade.external.TradingService;
 import org.springframework.beans.BeanUtils;
 
 import java.util.Date;
@@ -37,11 +39,23 @@ public class Sale {
 
     @PreUpdate
     public void onPreUpdate(){
+
         this.setCancelDate(new Date());
     }
 
     @PostUpdate
     public void onPostUpdate(){
+
+        mybtrade.external.Trading trading = new mybtrade.external.Trading();
+        trading.setSalesNum(this.salesNum);
+
+        trading =  Application.applicationContext.getBean(mybtrade.external.TradingService.class)
+                .tradecancel(this.salesNum);
+
+        if ( !"Reserved".equals(trading.getStatus())){
+            throw new RuntimeException("현재 판매도서는 취소 불가능한 상태입니다.");
+        }
+
         SaleCanceled saleCanceled = new SaleCanceled();
         BeanUtils.copyProperties(this, saleCanceled);
         saleCanceled.publishAfterCommit();

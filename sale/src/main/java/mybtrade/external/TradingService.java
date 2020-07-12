@@ -9,8 +9,8 @@ import java.util.Date;
 @FeignClient(name="trading", url="${api.url.mybtrade}")
 public interface TradingService {
 
-    @RequestMapping(method= RequestMethod.POST, path="/tradings/getStatus")
-    public @ResponseBody Trading tradecancel(@RequestParam String salesNum);
+    @RequestMapping(method= RequestMethod.GET, path="/tradings/getStatus")
+    @ResponseBody Trading tradecancel(@RequestParam Long salesNum);
 
 //    public void tradecancel(@RequestBody Trading trading);
 
