@@ -6,7 +6,6 @@ import java.util.Date;
 public class Reserved extends AbstractEvent {
 
     private Long id;
-
     private Long salesNum;
     private String smemberId;
     private String bookId;
@@ -14,7 +13,7 @@ public class Reserved extends AbstractEvent {
     private String bookPrice;
     private String author;
     private Date reqDate;
-    private String status;
+    private String status ;
 
     public Long getId() {
         return id;
@@ -64,9 +63,7 @@ public class Reserved extends AbstractEvent {
     public Date getReqDate() {
         return reqDate;
     }
-    public void setReqDate(Date reqDate) {
-        this.reqDate = reqDate;
-    }
+    public void setReqDate(Date reqDate) {this.reqDate = reqDate; }
 
     public String getStatus() {
         return status;

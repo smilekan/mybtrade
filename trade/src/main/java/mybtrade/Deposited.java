@@ -10,7 +10,7 @@ public class Deposited extends AbstractEvent {
     private String smemberId;
     private String bookId;
     private String status;
-    private Date depositDate;
+    private Date depositDate = new Date();
 
     public Long getId() {
         return id;

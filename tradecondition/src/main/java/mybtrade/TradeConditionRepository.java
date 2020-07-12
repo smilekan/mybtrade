@@ -7,17 +7,6 @@ import java.util.List;
 
 public interface TradeConditionRepository extends CrudRepository<TradeCondition, Long> {
 
-    List<TradeCondition> findByTrId(Long trId);
-    List<TradeCondition> findBy( );
-    List<TradeCondition> findByTrId(Long trId);
-    List<TradeCondition> findBy( );
-    List<TradeCondition> findByTrId(Long trId);
-    List<TradeCondition> findByTrId(Long trId);
-    List<TradeCondition> findBy( );
-    List<TradeCondition> findBySmemberId(String smemberId);
-    List<TradeCondition> findByBookId(String bookId);
-    List<TradeCondition> findBy( );
-    List<TradeCondition> findBy( );
+    List<TradeCondition> findBySalesNum(Long salesNum);
 
-        void deleteBy( );
 }

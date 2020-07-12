@@ -21,7 +21,7 @@ public class PolicyHandler{
             System.out.println("##### listener Shoppable : " + evaluated.toJson());
 
             Purchase purchase = new Purchase();
-            purchase.setTrId(evaluated.getSalesNum());
+            purchase.setSalesNum(evaluated.getSalesNum());
             purchase.setBookId(evaluated.getBookId());
             purchase.setTrPrice(evaluated.getEvPrice());
 

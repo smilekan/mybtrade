@@ -18,29 +18,28 @@ public class Evaluation {
     private String quality;
     private Integer uavPrice;
     private Integer evPrice;
-    private Date evDate;
+    private Date evDate ;
+    private String status;
 
-    @PostPersist
-    public void onPostPersist(){
-        Scanned scanned = new Scanned();
-        BeanUtils.copyProperties(this, scanned);
-        scanned.publishAfterCommit();
+    @PreUpdate
+    public void onPreUpdate(){
+        if ("Evaluated".equals(this.status)){
+            this.evDate = new Date();
+        }
     }
 
     @PostUpdate
     public void onPostUpdate(){
-        Scanned scanned = new Scanned();
-        BeanUtils.copyProperties(this, scanned);
-        scanned.publishAfterCommit();
-
-
-        Evaluated evaluated = new Evaluated();
-        BeanUtils.copyProperties(this, evaluated);
-        evaluated.publishAfterCommit();
-
-
+        if ("Scanned".equals(this.status)) {
+            Scanned scanned = new Scanned();
+            BeanUtils.copyProperties(this, scanned);
+            scanned.publishAfterCommit();
+        }else if ("Evaluated".equals(this.status)) {
+            Evaluated evaluated = new Evaluated();
+            BeanUtils.copyProperties(this, evaluated);
+            evaluated.publishAfterCommit();
+        }
     }
-
 
     public Long getId() {
         return id;
@@ -85,6 +84,13 @@ public class Evaluation {
     }
     public void setEvDate(Date evDate) {
         this.evDate = evDate;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+    public void setStatus(String status) {
+        this.status = status;
     }
 
 }

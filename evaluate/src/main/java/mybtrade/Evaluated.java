@@ -11,7 +11,7 @@ public class Evaluated extends AbstractEvent {
     private String quality;
     private Integer uavPrice;
     private Integer evPrice;
-    private Date evDate;
+    private Date evDate = new Date();
 
     public Long getId() {
         return id;

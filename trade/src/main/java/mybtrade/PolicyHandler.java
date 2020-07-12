@@ -8,6 +8,9 @@ import org.springframework.cloud.stream.annotation.StreamListener;
 import org.springframework.messaging.handler.annotation.Payload;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
+import java.util.List;
+
 @Service
 public class PolicyHandler{
 
@@ -24,7 +27,7 @@ public class PolicyHandler{
             trading.setSmemberId(reserved.getSmemberId());
             trading.setBookId(reserved.getBookId());
             trading.setRevDate(reserved.getReqDate());
-            trading.setStatus("Reserved");
+            trading.setStatus(reserved.getStatus());
 
             tradingRepository.save(trading);
         }
@@ -34,7 +37,20 @@ public class PolicyHandler{
 
         if(purchased.isMe()){
             System.out.println("##### listener Takeready : " + purchased.toJson());
-            Trading trading = new Trading();
+            Trading trading = tradingRepository.findBySalesNum(purchased.getSalesNum());
+    //        List<Trading> tradingList = tradingRepository.findBySalesNum(purchased.getSalesNum());
+            //for(Trading trading : tradingList) {
+                //trading.setSalesNum(purchased.getSalesNum());
+                trading.setPmemberId(purchased.getPmemberId());
+                //trading.setBookId(purchased.getBookId());
+                trading.setPurDate(purchased.getPurDate());
+                trading.setTrPrice(purchased.getTrPrice());
+                trading.setStatus(purchased.getStatus());
+
+                tradingRepository.save(trading);
+            //}
+
+/*            Trading trading = new Trading();
             trading.setSalesNum(purchased.getSalesNum());
             trading.setPmemberId(purchased.getPmemberId());
             trading.setBookId(purchased.getBookId());
@@ -42,7 +58,8 @@ public class PolicyHandler{
             trading.setTrPrice(purchased.getTrPrice());
             trading.setStatus("Purchased");
 
-            tradingRepository.save(trading);
+            tradingRepository.save(trading);*/
+
         }
     }
 

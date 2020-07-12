@@ -1,5 +1,7 @@
 package mybtrade;
 
+import java.util.Date;
+
 public class PurchaseCanceled extends AbstractEvent {
 
     private Long id;

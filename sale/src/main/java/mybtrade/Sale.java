@@ -19,14 +19,32 @@ public class Sale {
     private String bookNm;
     private Integer bookPrice;
     private String author;
-    private Date reqDate;
-    private Date cancelDate;
+    private Date reqDate ;
+    private Date cancelDate ;
+    private String status;
+
+    @PrePersist
+    public void onPrePersist(){
+        this.setReqDate(new Date());
+    }
 
     @PostPersist
     public void onPostPersist(){
         Reserved reserved = new Reserved();
         BeanUtils.copyProperties(this, reserved);
         reserved.publishAfterCommit();
+    }
+
+    @PreUpdate
+    public void onPreUpdate(){
+        this.setCancelDate(new Date());
+    }
+
+    @PostUpdate
+    public void onPostUpdate(){
+        SaleCanceled saleCanceled = new SaleCanceled();
+        BeanUtils.copyProperties(this, saleCanceled);
+        saleCanceled.publishAfterCommit();
     }
 
     public Long getId() {
@@ -91,6 +109,11 @@ public class Sale {
     public void setCancelDate(Date cancelDate) {
         this.cancelDate = cancelDate;
     }
+    public String getStatus() {
+        return status;
+    }
 
-
+    public void setStatus(String status) {
+        this.status = status;
+    }
 }

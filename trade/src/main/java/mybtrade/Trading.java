@@ -25,11 +25,11 @@ public class Trading {
 
     @PostUpdate
     public void onPostUpdate(){
-        if ("Reserved".equals(this.status)) {
+        if ("Deposited".equals(this.status)) {
             Deposited deposited = new Deposited();
             BeanUtils.copyProperties(this, deposited);
             deposited.publishAfterCommit();
-        }else if ("Purchased".equals(this.status)) {
+        }else if ("Taked".equals(this.status)) {
             Taked taked = new Taked();
             BeanUtils.copyProperties(this, taked);
             taked.publishAfterCommit();
