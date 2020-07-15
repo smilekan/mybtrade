@@ -38,9 +38,9 @@ logging:
 server:
   port: 8082
 
-api:
-  url:
-    mybtrade: http://localhost:8085
+#api:
+#  url:
+#    mybtrade: http://localhost:8085
 ---
 
 spring:

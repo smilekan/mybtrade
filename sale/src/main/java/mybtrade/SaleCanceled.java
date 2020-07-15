@@ -6,9 +6,7 @@ public class SaleCanceled extends AbstractEvent {
 
     private Long id;
     private Long salesNum;
-    private String smemberId;
-    private String bookId;
-    private Date cancelDate;
+    private Date cancelDate = new Date();
     private String status;
 
     public SaleCanceled(){
@@ -30,7 +28,7 @@ public class SaleCanceled extends AbstractEvent {
     public void setSalesNum(Long salesNum) {
         this.salesNum = salesNum;
     }
-
+/*
     public String getSmemberId() {
         return smemberId;
     }
@@ -45,6 +43,8 @@ public class SaleCanceled extends AbstractEvent {
     public void setBookId(String bookId) {
         this.bookId = bookId;
     }
+
+ */
     public Date getCancelDate() {
         return cancelDate;
     }

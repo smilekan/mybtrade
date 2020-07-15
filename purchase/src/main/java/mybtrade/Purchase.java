@@ -37,6 +37,13 @@ public class Purchase {
             BeanUtils.copyProperties(this, purchased);
             purchased.publishAfterCommit();
         }else if ("Canceled".equals(this.status)) {
+
+            mybtrade.external.Trading trading = new mybtrade.external.Trading();
+            trading.setSalesNum(this.salesNum);
+
+            trading =  Application.applicationContext.getBean(mybtrade.external.TradingService.class)
+                    .purchasecancel(this.salesNum);
+
             PurchaseCanceled purchaseCanceled = new PurchaseCanceled();
             BeanUtils.copyProperties(this, purchaseCanceled);
             purchaseCanceled.publishAfterCommit();

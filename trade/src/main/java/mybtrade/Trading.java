@@ -20,7 +20,7 @@ public class Trading {
     private String status;
     private Date revDate;
     private Date purDate;
-    private String cancelDate;
+    private Date cancelDate;
     private Integer trPrice;
 
     @PostUpdate
@@ -33,6 +33,11 @@ public class Trading {
             Taked taked = new Taked();
             BeanUtils.copyProperties(this, taked);
             taked.publishAfterCommit();
+        }else if ("Canceled".equals(this.status)) {
+            System.out.println("=========================tradecancel commit=======================");
+            TradeCanceled tradeCanceled = new TradeCanceled();
+            BeanUtils.copyProperties(this, tradeCanceled);
+            tradeCanceled.publishAfterCommit();
         }
     }
 
@@ -111,10 +116,10 @@ public class Trading {
         this.purDate = purDate;
     }
 
-    public String getCancelDate() {
+    public Date getCancelDate() {
         return cancelDate;
     }
-    public void setCancelDate(String cancelDate) {
+    public void setCancelDate(Date cancelDate) {
         this.cancelDate = cancelDate;
     }
 

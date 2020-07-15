@@ -15,19 +15,19 @@ spring:
         - id: sale
           uri: http://localhost:8082
           predicates:
-            - Path=/sales/**/sales/** 
+            - Path=/sales/**
         - id: purchase
           uri: http://localhost:8083
           predicates:
-            - Path=/purchases/**/purchases/** 
+            - Path=/purchases/**
         - id: trade
           uri: http://localhost:8084
           predicates:
-            - Path=/tradings/**/tradings/** 
+            - Path=/tradings/**
         - id: evaluate
           uri: http://localhost:8085
           predicates:
-            - Path=/evaluations/**/evaluations/** 
+            - Path=/evaluations/**
       globalcors:
         corsConfigurations:
           '[/**]':

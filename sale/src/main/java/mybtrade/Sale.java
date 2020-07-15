@@ -39,7 +39,7 @@ public class Sale {
 
     @PreUpdate
     public void onPreUpdate(){
-
+        System.out.println("0.preupdate");
         this.setCancelDate(new Date());
     }
 
@@ -49,8 +49,12 @@ public class Sale {
         mybtrade.external.Trading trading = new mybtrade.external.Trading();
         trading.setSalesNum(this.salesNum);
 
+        System.out.println("1.salesnum="+trading.getSalesNum());
+
         trading =  Application.applicationContext.getBean(mybtrade.external.TradingService.class)
                 .tradecancel(this.salesNum);
+
+        System.out.println("3.status="+trading.getStatus());
 
         if ( !"Reserved".equals(trading.getStatus())){
             throw new RuntimeException("현재 판매도서는 취소 불가능한 상태입니다.");
